@@ -3,39 +3,782 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minha Galeria Interativa</title>
+    <title>Apostila Interativa de LIBRAS - Completa</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="notification" class="notification"></div>
+    
+    <div class="container" id="content-to-pdf">
+        <header>
+            <h1>📚 Apostila Interativa de LIBRAS</h1>
+            <p class="subtitle">Língua Brasileira de Sinais - Material Completo com Vídeos e Imagens</p>
+            <div class="action-buttons">
+                <button class="download-btn" onclick="downloadPDF()">
+                    📥 Baixar PDF
+                </button>
+                <button class="print-btn" onclick="window.print()">
+                    🖨️ Imprimir
+                </button>
+            </div>
+        </header>
 
-    <header>
-        <h1>Momentos Especiais</h1>
-        <p>Uma coleção de fotos, GIFs e vídeos.</p>
-    </header>
+        <nav>
+            <div class="nav-buttons">
+                <button class="nav-btn active" onclick="showSection('alfabeto')">Alfabeto</button>
+                <button class="nav-btn" onclick="showSection('verbos')">Verbos</button>
+                <button class="nav-btn" onclick="showSection('adjetivos')">Adjetivos</button>
+                <button class="nav-btn" onclick="showSection('agropecuaria')">Agropecuária</button>
+                <button class="nav-btn" onclick="showSection('administracao')">Administração</button>
+                <button class="nav-btn" onclick="showSection('informatica')">Informática</button>
+                <button class="nav-btn" onclick="showSection('quimica')">Química</button>
+                <button class="nav-btn" onclick="showSection('fisica')">Física</button>
+                <button class="nav-btn" onclick="showSection('matematica')">Matemática</button>
+                <button class="nav-btn" onclick="showSection('biologia')">Biologia</button>
+                <button class="nav-btn" onclick="showSection('historia')">História</button>
+                <button class="nav-btn" onclick="showSection('filosofia')">Filosofia</button>
+                <button class="nav-btn" onclick="showSection('sociologia')">Sociologia</button>
+                <button class="nav-btn" onclick="showSection('robotica')">Robótica</button>
+                <button class="nav-btn" onclick="showSection('redes')">Redes</button>
+                <button class="nav-btn" onclick="showSection('hardware')">Hardware</button>
+            </div>
+        </nav>
 
-    <main class="galeria">
+        <div class="content">
+            <!-- Alfabeto com Imagens -->
+            <section id="alfabeto" class="section active">
+                <h2>Alfabeto em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📌 Importante:</strong> Cada letra possui uma configuração específica de mão. Clique nas imagens para ver o movimento em GIF.
+                </div>
+                
+                <div class="alfabeto-visual">
+                    <div class="letra-visual">
+                        <div class="letra">A</div>
+                        <div class="sinal-img">
+                            <img src="alfabeto/letra-a.jpg" alt="Letra A em LIBRAS" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQwIiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BPC90ZXh0Pjwvc3ZnPg=='">
+                        </div>
+                    </div>
+                    <div class="letra-visual">
+                        <div class="letra">B</div>
+                        <div class="sinal-img">
+                            <img src="alfabeto/letra-b.jpg" alt="Letra B em LIBRAS" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y0ZjRmNCIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQwIiBmaWxsPSIjOTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CPC90ZXh0Pjwvc3ZnPg=='">
+                        </div>
+                    </div>
+                    <!-- Continuar com todas as letras... -->
+                </div>
 
-        <div class="item">
-            <img src="foto1.jpg" alt="Descrição da Foto 1">
+                <h3>Vídeo Tutorial - Alfabeto Completo</h3>
+                <div class="media-card">
+                    <div class="media-container">
+                        <video controls poster="videos/alfabeto-thumb.jpg">
+                            <source src="videos/alfabeto-completo.mp4" type="video/mp4">
+                            <source src="videos/alfabeto-completo.webm" type="video/webm">
+                            <div class="media-placeholder">
+                                📹 Adicione o vídeo "alfabeto-completo.mp4" na pasta "videos/"
+                            </div>
+                        </video>
+                    </div>
+                    <div class="media-label">Alfabeto Manual Completo</div>
+                    <div class="media-description">Aprenda todas as 26 letras do alfabeto em LIBRAS com demonstrações claras e em velocidade adequada para iniciantes.</div>
+                </div>
+            </section>
+
+            <!-- Verbos com Vídeos e GIFs -->
+            <section id="verbos" class="section">
+                <h2>Verbos em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📌 Nota:</strong> Os verbos em LIBRAS incorporam movimento, direção e expressão facial. Observe atentamente cada demonstração.
+                </div>
+
+                <h3>Verbos Essenciais - Demonstrações</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/verbo-andar.gif" alt="Verbo ANDAR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🎬 GIF: verbo-andar.gif</div>'">
+                        </div>
+                        <div class="media-label">ANDAR</div>
+                        <div class="media-description">Movimento alternado dos dedos indicador e médio simulando o caminhar.</div>
+                        <div class="video-controls">
+                            <button class="control-btn" onclick="playVideo('andar')">▶️ Ver Vídeo</button>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/verbo-estudar.gif" alt="Verbo ESTUDAR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🎬 GIF: verbo-estudar.gif</div>'">
+                        </div>
+                        <div class="media-label">ESTUDAR</div>
+                        <div class="media-description">Mãos abertas simulando o folhear de um livro.</div>
+                        <div class="video-controls">
+                            <button class="control-btn" onclick="playVideo('estudar')">▶️ Ver Vídeo</button>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/verbo-trabalhar.gif" alt="Verbo TRABALHAR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🎬 GIF: verbo-trabalhar.gif</div>'">
+                        </div>
+                        <div class="media-label">TRABALHAR</div>
+                        <div class="media-description">Punhos alternados movendo-se para frente repetidamente.</div>
+                        <div class="video-controls">
+                            <button class="control-btn" onclick="playVideo('trabalhar')">▶️ Ver Vídeo</button>
+                        </div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls loop muted>
+                                <source src="videos/verbo-comer.mp4" type="video/mp4">
+                                <div class="media-placeholder">📹 Vídeo: verbo-comer.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">COMER</div>
+                        <div class="media-description">Mão em concha levando alimento à boca.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Adjetivos com Imagens -->
+            <section id="adjetivos" class="section">
+                <h2>Adjetivos em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📌 Dica:</strong> Expressões faciais intensificam o significado dos adjetivos. Pratique em frente ao espelho!
+                </div>
+
+                <h3>Estados Emocionais</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="images/adjetivo-feliz.jpg" alt="FELIZ em LIBRAS" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>😊 Imagem: adjetivo-feliz.jpg</div>'">
+                        </div>
+                        <div class="media-label">FELIZ</div>
+                        <div class="media-description">Mãos no peito com movimento circular ascendente + expressão facial alegre.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="images/adjetivo-triste.jpg" alt="TRISTE em LIBRAS" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>😢 Imagem: adjetivo-triste.jpg</div>'">
+                        </div>
+                        <div class="media-label">TRISTE</div>
+                        <div class="media-description">Mãos descendo pelo rosto + expressão facial de tristeza.</div>
+                    </div>
+                </div>
+
+                <h3>Cores em LIBRAS - Vídeo Demonstrativo</h3>
+                <div class="media-card">
+                    <div class="media-container">
+                        <video controls>
+                            <source src="videos/cores-libras.mp4" type="video/mp4">
+                            <div class="media-placeholder">🎨 Vídeo: cores-libras.mp4</div>
+                        </video>
+                    </div>
+                    <div class="media-label">Todas as Cores</div>
+                    <div class="media-description">Aprenda os sinais para vermelho, azul, verde, amarelo e outras cores básicas.</div>
+                </div>
+            </section>
+
+            <!-- Agropecuária com Mídia -->
+            <section id="agropecuaria" class="section">
+                <h2>Agropecuária em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📌 Contexto:</strong> Vocabulário específico do campo com demonstrações práticas.
+                </div>
+
+                <h3>Agricultura - Sinais Básicos</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/agro-plantar.gif" alt="PLANTAR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🌱 GIF: agro-plantar.gif</div>'">
+                        </div>
+                        <div class="media-label">PLANTAR</div>
+                        <div class="media-description">Movimento de colocar sementes no solo com dedos unidos.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls loop muted>
+                                <source src="videos/agro-colheita.mp4" type="video/mp4">
+                                <div class="media-placeholder">🌾 Vídeo: agro-colheita.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">COLHEITA</div>
+                        <div class="media-description">Movimento de recolher produtos da terra.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="images/agro-irrigacao.jpg" alt="IRRIGAÇÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>💧 Imagem: agro-irrigacao.jpg</div>'">
+                        </div>
+                        <div class="media-label">IRRIGAÇÃO</div>
+                        <div class="media-description">Dedos como gotas de água caindo sobre a plantação.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Administração -->
+            <section id="administracao" class="section">
+                <h2>Administração em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📌 Aplicação:</strong> Termos empresariais com contexto visual.
+                </div>
+
+                <h3>Conceitos Empresariais</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/adm-empresa.mp4" type="video/mp4">
+                                <div class="media-placeholder">🏢 Vídeo: adm-empresa.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">EMPRESA</div>
+                        <div class="media-description">Mãos em "E" com movimento de construção.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/adm-reuniao.gif" alt="REUNIÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>👥 GIF: adm-reuniao.gif</div>'">
+                        </div>
+                        <div class="media-label">REUNIÃO</div>
+                        <div class="media-description">Mãos se juntando em círculo representando pessoas.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Informática -->
+            <section id="informatica" class="section">
+                <h2>Informática em LIBRAS</h2>
+                <div class="example-box">
+                    <strong>💻 Dica:</strong> Muitos sinais de informática são icônicos, representando visualmente o objeto ou ação.
+                </div>
+
+                <h3>Hardware e Software</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/info-computador.gif" alt="COMPUTADOR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>💻 GIF: info-computador.gif</div>'">
+                        </div>
+                        <div class="media-label">COMPUTADOR</div>
+                        <div class="media-description">Mãos simulando digitação no teclado.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls loop muted>
+                                <source src="videos/info-internet.mp4" type="video/mp4">
+                                <div class="media-placeholder">🌐 Vídeo: info-internet.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">INTERNET</div>
+                        <div class="media-description">Dedos entrelaçados girando, representando conexão global.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="images/info-mouse.jpg" alt="MOUSE" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🖱️ Imagem: info-mouse.jpg</div>'">
+                        </div>
+                        <div class="media-label">MOUSE</div>
+                        <div class="media-description">Mão posicionada como se segurasse um mouse.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/info-download.gif" alt="DOWNLOAD" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>⬇️ GIF: info-download.gif</div>'">
+                        </div>
+                        <div class="media-label">DOWNLOAD</div>
+                        <div class="media-description">Mão descendo em linha reta representando baixar arquivo.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Química -->
+            <section id="quimica" class="section">
+                <h2>Química em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>⚗️ Laboratório:</strong> Sinais que representam elementos e reações químicas.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/quim-atomo.mp4" type="video/mp4">
+                                <div class="media-placeholder">⚛️ Vídeo: quim-atomo.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">ÁTOMO</div>
+                        <div class="media-description">Dedos girando como elétrons ao redor do núcleo.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/quim-reacao.gif" alt="REAÇÃO QUÍMICA" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🧪 GIF: quim-reacao.gif</div>'">
+                        </div>
+                        <div class="media-label">REAÇÃO QUÍMICA</div>
+                        <div class="media-description">Mãos se juntando com movimento explosivo.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Física -->
+            <section id="fisica" class="section">
+                <h2>Física em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🔬 Fenômenos:</strong> Representação visual de conceitos físicos.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls loop muted>
+                                <source src="videos/fis-movimento.mp4" type="video/mp4">
+                                <div class="media-placeholder">🔄 Vídeo: fis-movimento.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">MOVIMENTO</div>
+                        <div class="media-description">Demonstração de diferentes tipos de movimento.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/fis-energia.gif" alt="ENERGIA" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>⚡ GIF: fis-energia.gif</div>'">
+                        </div>
+                        <div class="media-label">ENERGIA</div>
+                        <div class="media-description">Mãos irradiando do centro para fora.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matemática -->
+            <section id="matematica" class="section">
+                <h2>Matemática em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🔢 Números:</strong> Sistema numérico e operações matemáticas visuais.
+                </div>
+
+                <h3>Números de 0 a 10</h3>
+                <div class="media-card">
+                    <div class="media-container">
+                        <video controls>
+                            <source src="videos/mat-numeros.mp4" type="video/mp4">
+                            <div class="media-placeholder">🔢 Vídeo: mat-numeros.mp4</div>
+                        </video>
+                    </div>
+                    <div class="media-label">Números Básicos</div>
+                    <div class="media-description">Configurações de mão para números de 0 a 10.</div>
+                </div>
+
+                <h3>Operações Matemáticas</h3>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/mat-adicao.gif" alt="ADIÇÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>➕ GIF: mat-adicao.gif</div>'">
+                        </div>
+                        <div class="media-label">ADIÇÃO (+)</div>
+                        <div class="media-description">Dedos indicadores formando uma cruz.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/mat-subtracao.gif" alt="SUBTRAÇÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>➖ GIF: mat-subtracao.gif</div>'">
+                        </div>
+                        <div class="media-label">SUBTRAÇÃO (-)</div>
+                        <div class="media-description">Dedo indicador horizontal.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/mat-multiplicacao.gif" alt="MULTIPLICAÇÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>✖️ GIF: mat-multiplicacao.gif</div>'">
+                        </div>
+                        <div class="media-label">MULTIPLICAÇÃO (×)</div>
+                        <div class="media-description">Dedos indicadores formando um X.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/mat-divisao.gif" alt="DIVISÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>➗ GIF: mat-divisao.gif</div>'">
+                        </div>
+                        <div class="media-label">DIVISÃO (÷)</div>
+                        <div class="media-description">Mão cortando ao meio horizontalmente.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Biologia -->
+            <section id="biologia" class="section">
+                <h2>Biologia em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🧬 Vida:</strong> Sinais para processos biológicos e anatomia.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/bio-dna.mp4" type="video/mp4">
+                                <div class="media-placeholder">🧬 Vídeo: bio-dna.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">DNA</div>
+                        <div class="media-description">Dedos formando dupla hélice com movimento espiral.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/bio-celula.gif" alt="CÉLULA" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🦠 GIF: bio-celula.gif</div>'">
+                        </div>
+                        <div class="media-label">CÉLULA</div>
+                        <div class="media-description">Mão formando círculo pequeno representando unidade básica.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/bio-fotossintese.gif" alt="FOTOSSÍNTESE" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🌿 GIF: bio-fotossintese.gif</div>'">
+                        </div>
+                        <div class="media-label">FOTOSSÍNTESE</div>
+                        <div class="media-description">Sol (mão aberta) + planta crescendo.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- História -->
+            <section id="historia" class="section">
+                <h2>História em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>📚 Tempo:</strong> Conceitos temporais e eventos históricos importantes.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/hist-passado.gif" alt="PASSADO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>⏮️ GIF: hist-passado.gif</div>'">
+                        </div>
+                        <div class="media-label">PASSADO</div>
+                        <div class="media-description">Mão movendo-se para trás do ombro.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/hist-revolucao.mp4" type="video/mp4">
+                                <div class="media-placeholder">⚔️ Vídeo: hist-revolucao.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">REVOLUÇÃO</div>
+                        <div class="media-description">Punho fechado girando para cima.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filosofia -->
+            <section id="filosofia" class="section">
+                <h2>Filosofia em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>💭 Pensamento:</strong> Conceitos abstratos e reflexivos em sinais.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/filo-pensar.gif" alt="PENSAR" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🤔 GIF: filo-pensar.gif</div>'">
+                        </div>
+                        <div class="media-label">PENSAR</div>
+                        <div class="media-description">Dedo indicador na testa com movimento circular.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/filo-verdade.mp4" type="video/mp4">
+                                <div class="media-placeholder">✨ Vídeo: filo-verdade.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">VERDADE</div>
+                        <div class="media-description">Dedo indicador reto saindo da boca.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sociologia -->
+            <section id="sociologia" class="section">
+                <h2>Sociologia em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>👥 Sociedade:</strong> Relações sociais e estruturas coletivas.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/soc-sociedade.mp4" type="video/mp4">
+                                <div class="media-placeholder">👥 Vídeo: soc-sociedade.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">SOCIEDADE</div>
+                        <div class="media-description">Mãos formando grupos de pessoas interligadas.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/soc-inclusao.gif" alt="INCLUSÃO" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🤝 GIF: soc-inclusao.gif</div>'">
+                        </div>
+                        <div class="media-label">INCLUSÃO</div>
+                        <div class="media-description">Mãos trazendo elementos para dentro do grupo.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Robótica -->
+            <section id="robotica" class="section">
+                <h2>Robótica em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🤖 Automação:</strong> Tecnologia de robôs e programação.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/rob-robo.gif" alt="ROBÔ" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>🤖 GIF: rob-robo.gif</div>'">
+                        </div>
+                        <div class="media-label">ROBÔ</div>
+                        <div class="media-description">Braços mecânicos com movimentos rígidos e angulares.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/rob-programar.mp4" type="video/mp4">
+                                <div class="media-placeholder">💻 Vídeo: rob-programar.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">PROGRAMAR</div>
+                        <div class="media-description">Dedos digitando código rapidamente.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Redes de Computadores -->
+            <section id="redes" class="section">
+                <h2>Redes de Computadores em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🌐 Conectividade:</strong> Comunicação entre sistemas e protocolos.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/rede-wifi.gif" alt="WI-FI" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>📶 GIF: rede-wifi.gif</div>'">
+                        </div>
+                        <div class="media-label">WI-FI</div>
+                        <div class="media-description">Ondas expandindo de um ponto central.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/rede-servidor.mp4" type="video/mp4">
+                                <div class="media-placeholder">🖥️ Vídeo: rede-servidor.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">SERVIDOR</div>
+                        <div class="media-description">Mão central distribuindo dados para vários pontos.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hardware -->
+            <section id="hardware" class="section">
+                <h2>Hardware em LIBRAS</h2>
+                <div class="info-box">
+                    <strong>🔧 Componentes:</strong> Partes físicas do computador e periféricos.
+                </div>
+
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-container">
+                            <video controls>
+                                <source src="videos/hw-processador.mp4" type="video/mp4">
+                                <div class="media-placeholder">🧠 Vídeo: hw-processador.mp4</div>
+                            </video>
+                        </div>
+                        <div class="media-label">PROCESSADOR (CPU)</div>
+                        <div class="media-description">Dedos simulando processamento rápido de informações.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="gifs/hw-memoria.gif" alt="MEMÓRIA RAM" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>💾 GIF: hw-memoria.gif</div>'">
+                        </div>
+                        <div class="media-label">MEMÓRIA RAM</div>
+                        <div class="media-description">Mão acessando informações rapidamente.</div>
+                    </div>
+
+                    <div class="media-card">
+                        <div class="media-container">
+                            <img src="images/hw-hd.jpg" alt="HD/SSD" onerror="this.parentElement.innerHTML='<div class=\'media-placeholder\'>💿 Imagem: hw-hd.jpg</div>'">
+                        </div>
+                        <div class="media-label">HD / SSD</div>
+                        <div class="media-description">Disco girando ou chip para armazenamento.</div>
+                    </div>
+                </div>
+            </section>
         </div>
+    </div>
 
-        <div class="item">
-            <video controls autoplay loop muted>
-                <source src="video1.mp4" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-        </div>
+    <script>
+        function showSection(sectionId) {
+            // Remove active de todas as seções
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active de todos os botões
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Adiciona active na seção selecionada
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.classList.add('active');
+            }
+            
+            // Adiciona active no botão correspondente
+            const activeButton = event.target;
+            activeButton.classList.add('active');
+            
+            // Scroll suave para o topo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-        <div class="item">
-            <img src="gif1.gif" alt="Descrição do GIF 1">
-        </div>
+        // Função para mostrar notificações
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
 
-        <div class="item">
-            <img src="foto2.jpeg" alt="Descrição da Foto 2">
-        </div>
+        // Função para simular reprodução de vídeo
+        function playVideo(videoName) {
+            showNotification(`▶️ Reproduzindo vídeo: ${videoName}`);
+            // Aqui você pode adicionar lógica para abrir o vídeo em modal ou nova janela
+        }
 
-    </main>
+        // Função para baixar como PDF
+        async function downloadPDF() {
+            showNotification('📥 Preparando PDF...');
+            
+            try {
+                // Mostrar todas as seções para o PDF
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                });
+                
+                // Esconder elementos de navegação
+                const navButtons = document.querySelector('.nav-buttons');
+                const actionButtons = document.querySelector('.action-buttons');
+                navButtons.style.display = 'none';
+                actionButtons.style.display = 'none';
+                
+                // Usar jsPDF com html2canvas
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const content = document.getElementById('content-to-pdf');
+                
+                // Capturar o conteúdo como canvas
+                const canvas = await html2canvas(content, {
+                    scale: 2,
+                    logging: false,
+                    useCORS: true,
+                    windowWidth: content.scrollWidth,
+                    windowHeight: content.scrollHeight
+                });
+                
+                // Adicionar ao PDF
+                const imgData = canvas.toDataURL('image/png');
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let heightLeft = imgHeight;
+                let position = 0;
+                
+                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+                
+                while (heightLeft >= 0) {
+                    position = heightLeft - imgHeight;
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+                }
+                
+                // Salvar o PDF
+                pdf.save('apostila-libras.pdf');
+                
+                showNotification('✅ PDF baixado com sucesso!');
+                
+                // Restaurar visualização
+                sections.forEach(section => {
+                    section.style.display = '';
+                });
+                navButtons.style.display = '';
+                actionButtons.style.display = '';
+                
+                // Mostrar apenas a seção ativa
+                document.querySelector('.section.active').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                showNotification('❌ Erro ao gerar PDF. Tente novamente.');
+            }
+        }
 
-    <script src="script.js"></script>
+        // Adicionar mensagem de orientação ao carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification('📚 Bem-vindo à Apostila de LIBRAS! Adicione suas mídias nas pastas indicadas.');
+            
+            // Adicionar interatividade aos cards
+            const mediaCards = document.querySelectorAll('.media-card');
+            mediaCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('control-btn')) {
+                        const label = this.querySelector('.media-label').textContent;
+                        showNotification(`📖 Sinal: ${label}`);
+                    }
+                });
+            });
+        });
+
+        // Função alternativa para PDF usando window.print()
+        function printToPDF() {
+            showNotification('🖨️ Abrindo diálogo de impressão...');
+            window.print();
+        }
+
+        // Adicionar suporte para teclas de atalho
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + P para imprimir
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                printToPDF();
+            }
+            
+            // Ctrl/Cmd + S para salvar PDF
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                downloadPDF();
+            }
+        });
+    </script>
 </body>
 </html>
