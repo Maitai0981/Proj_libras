@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import CategoryForm from '../admin/CategoryForm'; // Caminho corrigido
-import SignForm from '../admin/SignForm'; // Caminho corrigido
-import { supabase } from '../api/supabase';
+import CategoryForm from '../admin/CategoryForm';
+import SignForm from '../admin/SignForm';
+import { db } from '../../api/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 function AdminPage() {
   const [categories, setCategories] = useState([]);
@@ -12,14 +13,17 @@ function AdminPage() {
   }, []);
 
   const fetchData = async () => {
-    const { data: categoriesData, error: catError } = await supabase.from('categories').select('*');
-    const { data: signsData, error: signsError } = await supabase.from('signs').select('*, categories(name)');
+    try {
+      const categoriesSnapshot = await getDocs(collection(db, 'categories'));
+      const categoriesData = categoriesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
-    if (catError || signsError) {
-      console.error('Erro ao buscar dados de administração:', catError || signsError);
-    } else {
+      const signsSnapshot = await getDocs(collection(db, 'signs'));
+      const signsData = signsSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
       setCategories(categoriesData);
       setSigns(signsData);
+    } catch (error) {
+      console.error('Erro ao buscar dados de administração:', error);
     }
   };
 
@@ -51,7 +55,9 @@ function AdminPage() {
             {signs.map(sign => (
               <tr key={sign.id}>
                 <td>{sign.name}</td>
-                <td>{sign.categories.name}</td>
+                <td>
+                  {categories.find(cat => cat.id === sign.categoryId)?.name || 'N/A'}
+                </td>
               </tr>
             ))}
           </tbody>

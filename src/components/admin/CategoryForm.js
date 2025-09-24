@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { supabase } from '../../api/supabase';
+import { db } from '../../api/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 function CategoryForm({ onCategoryAdded }) {
   const [categoryName, setCategoryName] = useState('');
@@ -8,23 +9,22 @@ function CategoryForm({ onCategoryAdded }) {
     e.preventDefault();
     if (!categoryName) return;
 
-    const { data, error } = await supabase
-      .from('categories')
-      .insert([{ name: categoryName, slug: categoryName.toLowerCase().replace(/\s/g, '-') }])
-      .select();
-
-    if (error) {
-      console.error('Erro ao adicionar categoria:', error);
-    } else {
-      console.log('Categoria adicionada:', data);
+    try {
+      const docRef = await addDoc(collection(db, 'categories'), {
+        name: categoryName,
+        slug: categoryName.toLowerCase().replace(/\s/g, '-')
+      });
+      console.log('Categoria adicionada com ID:', docRef.id);
       setCategoryName('');
       if (onCategoryAdded) {
         onCategoryAdded();
       }
+    } catch (error) {
+      console.error('Erro ao adicionar categoria:', error);
     }
   };
 
-  return (
+  return (  
     <form onSubmit={handleSubmit} className="admin-form">
       <h3>Adicionar Nova Categoria</h3>
       <input

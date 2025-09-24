@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '../api/supabase';
+import { db } from '../api/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 function useFetchSigns() {
   const [data, setData] = useState({ signs: [], categories: [] });
@@ -12,23 +13,30 @@ function useFetchSigns() {
       setError(null);
 
       try {
-        const { data: signsData, error: signsError } = await supabase
-          .from('signs')
-          .select('*, categories(name, slug)');
+        const categoriesCollectionRef = collection(db, 'categories');
+        const signsCollectionRef = collection(db, 'signs');
 
-        const { data: categoriesData, error: categoriesError } = await supabase
-          .from('categories')
-          .select('*');
+        const [categoriesSnapshot, signsSnapshot] = await Promise.all([
+          getDocs(categoriesCollectionRef),
+          getDocs(signsCollectionRef)
+        ]);
 
-        if (signsError || categoriesError) {
-          throw signsError || categoriesError;
-        }
+        const categoriesData = categoriesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
+        const signsData = signsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
 
         setData({
           signs: signsData,
           categories: categoriesData
         });
       } catch (err) {
+        console.error("Erro ao buscar dados do Firebase:", err);
         setError(err);
       } finally {
         setLoading(false);
@@ -36,7 +44,7 @@ function useFetchSigns() {
     };
 
     fetchData();
-  }, []); // A dependência vazia garante que o efeito só rode uma vez
+  }, []);
 
   return { data, loading, error };
 }

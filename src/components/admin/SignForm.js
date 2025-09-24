@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { supabase } from '../../api/supabase';
+import { db } from '../../api/firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 function SignForm({ categories, onSignAdded }) {
   const [signName, setSignName] = useState('');
@@ -11,20 +12,14 @@ function SignForm({ categories, onSignAdded }) {
     e.preventDefault();
     if (!signName || !categoryId) return;
 
-    const { data, error } = await supabase
-      .from('signs')
-      .insert([{
+    try {
+      await addDoc(collection(db, 'signs'), {
         name: signName,
         description: description,
-        media_url: mediaUrl,
-        category_id: categoryId
-      }])
-      .select();
-
-    if (error) {
-      console.error('Erro ao adicionar sinal:', error);
-    } else {
-      console.log('Sinal adicionado:', data);
+        mediaUrl: mediaUrl,
+        categoryId: categoryId
+      });
+      console.log('Sinal adicionado com sucesso!');
       setSignName('');
       setDescription('');
       setMediaUrl('');
@@ -32,11 +27,13 @@ function SignForm({ categories, onSignAdded }) {
       if (onSignAdded) {
         onSignAdded();
       }
+    } catch (error) {
+      console.error('Erro ao adicionar sinal:', error);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="admin-form">
+     <form onSubmit={handleSubmit} className="admin-form">
       <h3>Adicionar Novo Sinal</h3>
       <input
         type="text"
