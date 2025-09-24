@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Regras para a coleção 'categories'
+    match /categories/{categoryId} {
+      // Todos podem ler as categorias
+      allow read: if true;
+      // Apenas usuários autenticados podem criar/escrever novas categorias
+      allow create, update, delete: if request.auth != null;
+    }
+
+    // Regras para a coleção 'signs'
+    match /signs/{signId} {
+      // Todos podem ler os sinais
+      allow read: if true;
+      // Apenas usuários autenticados podem criar/escrever novos sinais
+      allow create, update, delete: if request.auth != null;
+    }
+  }
+}
