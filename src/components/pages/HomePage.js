@@ -1,9 +1,8 @@
-// src/pages/HomePage.js
 import React, { useState } from 'react';
-import Header from '../components/common/Header';
-import Navigation from '../components/common/Navigation';
-import MediaCard from '../components/common/MediaCard';
-import useFetchSigns from '../hooks/useFetchSigns'; // Importa o novo hook
+import Header from '../common/Header';
+import Navigation from '../common/Navigation'; 
+import MediaCard from '../common/MediaCard'; 
+import useFetchSigns from '../../hooks/useFetchSigns';
 
 function HomePage() {
   const { data, loading, error } = useFetchSigns();

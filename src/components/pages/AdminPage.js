@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import CategoryForm from '../components/admin/CategoryForm';
-import SignForm from '../components/admin/SignForm';
+import CategoryForm from '../admin/CategoryForm'; // Caminho corrigido
+import SignForm from '../admin/SignForm'; // Caminho corrigido
 import { supabase } from '../api/supabase';
 
 function AdminPage() {
